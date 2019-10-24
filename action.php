@@ -68,7 +68,7 @@ if($_POST['action'] == "Select") {
 
 //Update data in modal 
 if($_POST['action'] == "Update") {
-    $result = $user->updateData($_POST['name'],$_POST['username'],$_POST['password'],$_POST['email'],$_POST['user_id']);
+    $result = $user->updateData($_POST['name'],$_POST['username'],password_hash($_POST['password'],PASSWORD_DEFAULT),$_POST['email'],$_POST['user_id']);
     if(!empty($result)) {
         echo "Data Updated";
     }
@@ -81,6 +81,5 @@ if($_POST['action'] == "Delete") {
         echo "Data Deleted";
     }
 }
-
 
 ?>

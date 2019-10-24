@@ -14,6 +14,7 @@ class User {
     
         return $result;
     }
+
     //Check Row Count
     public function checkRowCount($statement) {
         if($statement > 0) {
@@ -38,7 +39,6 @@ class User {
         } else {
             return false;
         }
-
     }
 
     public function selectUserByID($id) {
@@ -48,14 +48,13 @@ class User {
         $result = $stmt->fetchAll();
     
         return $result;
-  
     }
 
     public function updateData($name,$username,$password,$email,$id) {
         $stmt = $this->pdo->prepare("UPDATE users SET name = :name, username = :username, password = :password, email = :email WHERE id = :id");
         $stmt->bindParam(":name",$name,PDO::PARAM_STR);
         $stmt->bindParam(":username",$username,PDO::PARAM_STR);
-        $stmt->bindParam(":password",$pasword,PDO::PARAM_STR);
+        $stmt->bindParam(":password",$password,PDO::PARAM_STR);
         $stmt->bindParam(":email",$email,PDO::PARAM_STR);
         $stmt->bindParam(":id",$id,PDO::PARAM_INT);
         
@@ -66,13 +65,11 @@ class User {
         }
     }
 
-
     public function deleteData($id) {
         $stmt = $this->pdo->prepare("DELETE FROM users WHERE id = :id");
         $stmt->bindParam(":id",$id);
         $stmt->execute();
     }
-
 }
 
 ?>
